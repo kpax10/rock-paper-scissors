@@ -6,7 +6,8 @@ let playerScore = 0;
 let computerScore = 0;
 
 const playerPlay = function () {
-    playerSelection = prompt('Rock, Paper, or Scissors?').toLowerCase();
+    // playerSelection = prompt('Rock, Paper, or Scissors?').toLowerCase();
+    playerSelection = e.target.value;
 
     while (!(playerSelection === 'rock' || playerSelection === 'paper' || playerSelection === 'scissors')) {
         console.log('not rock, paper, or scissors');
@@ -42,14 +43,21 @@ const playRound = function () {
 }
 
 const game = function () {
-    for (let i = 1; i <= 5; i++) {
-        playRound();
-        console.log(`Round ${i}. Player Score: ${playerScore}, Computer score: ${computerScore}`);
-    }
+    playRound();
+    // console.log(`Round ${i}. Player Score: ${playerScore}, Computer score: ${computerScore}`);
     if (playerScore === computerScore) {
         console.log('NO WINNER!');
     } else {
         console.log(`YOU ${(playerScore > computerScore) ? 'WIN!' : 'LOSE!'}, SCORE ${playerScore} to ${computerScore}`);
     }
 }
-game();
+
+const buttons = document.querySelectorAll('button');
+
+buttons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        console.log(e.target.value);
+        if (e.target.value === 'rock')
+            playRound();
+    })
+})
