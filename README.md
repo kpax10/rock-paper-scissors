@@ -1,1 +1,1 @@
-A simple Rock, Paper, Scissors game played in the console.  Assignment from The Odin Project.
+A simple Rock, Paper, Scissors game.  Assignment from The Odin Project.
