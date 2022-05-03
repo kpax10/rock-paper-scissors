@@ -5,15 +5,21 @@ let computerSelection;
 let playerScore = 0;
 let computerScore = 0;
 
-const playerPlay = function () {
+const playerPlay = function (e) {
     // playerSelection = prompt('Rock, Paper, or Scissors?').toLowerCase();
-    playerSelection = e.target.value;
+    return playerSelection = e.target.value;
+    console.log(e.target.value);
 
     while (!(playerSelection === 'rock' || playerSelection === 'paper' || playerSelection === 'scissors')) {
         console.log('not rock, paper, or scissors');
         playerSelection = prompt('Rock, Paper, or Scissors?');
     }
-    return playerSelection;
+
+
+    // while (!(playerSelection === 'rock' || playerSelection === 'paper' || playerSelection === 'scissors')) {
+    //     console.log('not rock, paper, or scissors');
+    //     playerSelection = prompt('Rock, Paper, or Scissors?');
+    // }
 }
 
 const computerPlay = function () {
@@ -22,12 +28,12 @@ const computerPlay = function () {
     return computerSelection = options[randomNum];
 }
 
-const playRound = function () {
-    playerPlay();
+const playRound = function (e) {
+    playerPlay(e);
     computerPlay();
 
     if (playerSelection === computerSelection) {
-        console.log('Draw!');
+        console.log(`${playerSelection} and ${computerSelection}, Draw!`);
         return;
     } else if (
         (playerSelection === 'rock' && computerSelection === 'scissors') ||
@@ -42,8 +48,8 @@ const playRound = function () {
     }
 }
 
-const game = function () {
-    playRound();
+const game = function (e) {
+    playRound(e);
     // console.log(`Round ${i}. Player Score: ${playerScore}, Computer score: ${computerScore}`);
     if (playerScore === computerScore) {
         console.log('NO WINNER!');
@@ -53,11 +59,9 @@ const game = function () {
 }
 
 const buttons = document.querySelectorAll('button');
+buttons.forEach(btn => btn.addEventListener('click', game))
 
-buttons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-        console.log(e.target.value);
-        if (e.target.value === 'rock')
-            playRound();
-    })
-})
+
+    //
+    // if (e.target.value === 'rock')
+    //     playRound()
